@@ -3,19 +3,21 @@ import { observer } from "mobx-react-lite"
 import React, { FunctionComponent as Component, useCallback } from "react"
 import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { BulletItem, Button, Header, Screen, Text, Wallpaper } from "../../components"
-import { color, spacing } from "../../theme"
+import { color, spacing, typography } from "../../theme"
+import { colors } from "react-select/src/theme"
 export const logoIgnite = require("./logo-ignite.png")
 export const heart = require("./heart.png")
 
-const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
   paddingHorizontal: spacing[4],
+  flex: 1,
 }
 const DEMO: ViewStyle = {
   paddingVertical: spacing[4],
   paddingHorizontal: spacing[4],
-  backgroundColor: "#5D2555",
+  backgroundColor: color.primary,
+  marginTop: "auto",
 }
 const BOLD: TextStyle = { fontWeight: "bold" }
 const DEMO_TEXT: TextStyle = {
@@ -43,33 +45,13 @@ const TITLE: TextStyle = {
   marginBottom: spacing[5],
 }
 const TAGLINE: TextStyle = {
-  color: "#BAB6C8",
+  color: color.text,
   fontSize: 15,
   lineHeight: 22,
   marginBottom: spacing[4] + spacing[1],
 }
-const IGNITE: ImageStyle = {
-  marginVertical: spacing[6],
-  alignSelf: "center",
-}
-const LOVE_WRAPPER: ViewStyle = {
-  flexDirection: "row",
-  alignItems: "center",
-  alignSelf: "center",
-}
-const LOVE: TextStyle = {
-  color: "#BAB6C8",
-  fontSize: 15,
-  lineHeight: 22,
-}
-const HEART: ImageStyle = {
-  marginHorizontal: spacing[2],
-  width: 10,
-  height: 10,
-  resizeMode: "contain",
-}
 const HINT: TextStyle = {
-  color: "#BAB6C8",
+  color: color.dim,
   fontSize: 12,
   lineHeight: 15,
   marginVertical: spacing[2],
@@ -83,36 +65,25 @@ export const DemoScreen: Component = observer(function DemoScreen() {
     navigation.navigate("allCharacters")
   }, [])
   return (
-    <View style={FULL}>
-      <Wallpaper />
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
-        <Header
-          headerTx="demoScreen.howTo"
-          leftIcon="back"
-          onLeftPress={goBack}
-          style={HEADER}
-          titleStyle={HEADER_TITLE}
-        />
-        <Text style={TITLE} preset="header" tx="demoScreen.title" />
-        <Text style={TAGLINE} tx="demoScreen.tagLine" />
-        <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
-        <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
-        <View>
-          <Button
-            style={DEMO}
-            textStyle={DEMO_TEXT}
-            tx="demoScreen.reactotron"
-            onPress={demoReactotron}
-          />
-          <Text style={HINT} tx={`demoScreen.${Platform.OS}ReactotronHint`} />
-        </View>
-        <Image source={logoIgnite} style={IGNITE} />
-        <View style={LOVE_WRAPPER}>
-          <Text style={LOVE} text="Made with" />
-          <Image source={heart} style={HEART} />
-          <Text style={LOVE} text="by Infinite Red" />
-        </View>
-      </Screen>
-    </View>
+    <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
+      <Header
+        headerTx="demoScreen.howTo"
+        leftIcon="back"
+        onLeftPress={goBack}
+        style={HEADER}
+        titleStyle={HEADER_TITLE}
+      />
+      <Text style={TITLE} preset="header" tx="demoScreen.title" />
+      <Text style={TAGLINE} tx="demoScreen.tagLine" />
+      <BulletItem text="Load up Reactotron!  You can inspect your app, view the events, interact, and so much more!" />
+      <BulletItem text="Integrated here, Navigation with State, TypeScript, Storybook, Solidarity, and i18n." />
+      <Button
+        style={DEMO}
+        textStyle={DEMO_TEXT}
+        tx="demoScreen.reactotron"
+        onPress={demoReactotron}
+      />
+      <Text style={HINT} tx={`demoScreen.${Platform.OS}ReactotronHint`} />
+    </Screen>
   )
 })
