@@ -4,11 +4,11 @@
  *
  * You'll likely spend most of your time in this file.
  */
-import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen } from "../screens"
-import { createNativeStackNavigator } from "react-native-screens/native-stack"
-import { AllCharactersScreen } from "../screens/AllCharacters-screen"
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {WelcomeScreen, DemoScreen} from '../screens';
+import {createNativeStackNavigator} from 'react-native-screens/native-stack';
+import {AllCharactersScreen} from '../screens/AllCharacters-screen';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,7 +29,7 @@ export type PrimaryParamList = {
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createNativeStackNavigator<PrimaryParamList>()
+const Stack = createNativeStackNavigator<PrimaryParamList>();
 
 export function PrimaryNavigator() {
   return (
@@ -43,7 +43,7 @@ export function PrimaryNavigator() {
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="allCharacters" component={AllCharactersScreen} />
     </Stack.Navigator>
-  )
+  );
 }
 
 /**
@@ -55,5 +55,5 @@ export function PrimaryNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
-export const canExit = (routeName: string) => exitRoutes.includes(routeName)
+const exitRoutes = ['welcome'];
+export const canExit = (routeName: string) => exitRoutes.includes(routeName);

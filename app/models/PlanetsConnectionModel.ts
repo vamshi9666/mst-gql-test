@@ -1,11 +1,11 @@
-import { Instance } from "mobx-state-tree"
-import { PlanetsConnectionModelBase } from "./PlanetsConnectionModel.base"
+import {Instance} from 'mobx-state-tree';
+import {PlanetsConnectionModelBase} from './PlanetsConnectionModel.base';
 
 /* The TypeScript type of an instance of PlanetsConnectionModel */
 export interface PlanetsConnectionModelType extends Instance<typeof PlanetsConnectionModel.Type> {}
 
 /* A graphql query fragment builders for PlanetsConnectionModel */
-export { selectFromPlanetsConnection, planetsConnectionModelPrimitives, PlanetsConnectionModelSelector } from "./PlanetsConnectionModel.base"
+export {selectFromPlanetsConnection, planetsConnectionModelPrimitives, PlanetsConnectionModelSelector} from './PlanetsConnectionModel.base';
 
 /**
  * PlanetsConnectionModel
@@ -13,9 +13,9 @@ export { selectFromPlanetsConnection, planetsConnectionModelPrimitives, PlanetsC
  * A connection to a list of items.
  */
 export const PlanetsConnectionModel = PlanetsConnectionModelBase
-  .actions(self => ({
+    .actions((self) => ({
     // This is an auto-generated example action.
-    log() {
-      console.log(JSON.stringify(self))
-    }
-  }))
+      log() {
+        console.log(JSON.stringify(self));
+      },
+    }));

@@ -1,10 +1,10 @@
-import React, { FunctionComponent as Component } from "react"
-import { View } from "react-native"
-import { Text } from "../"
+import React, {FunctionComponent as Component} from 'react';
+import {View} from 'react-native';
+import {Text} from '../';
 // import { observer } from "mobx-react-lite"
 // import { useStores } from "../../models"
-import { fetchErrorStyles as styles } from "./FetchError.styles"
-import { useObserver } from "mobx-react-lite"
+import {fetchErrorStyles as styles} from './FetchError.styles';
+import {useObserver} from 'mobx-react-lite';
 
 export interface FetchErrorProps {}
 
@@ -13,10 +13,10 @@ export interface FetchErrorProps {}
  *
  * Component description here for TypeScript tips.
  */
-export const FetchError: Component<FetchErrorProps> = props => {
+export const FetchError: Component<FetchErrorProps> = (props) => {
   return useObserver(() => (
     <View style={styles.WRAPPER}>
       <Text>Error Fetching </Text>
     </View>
-  ))
-}
+  ));
+};

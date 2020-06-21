@@ -1,11 +1,11 @@
-import * as React from "react"
-import { View, ViewStyle } from "react-native"
-import { Text } from "../"
+import * as React from 'react';
+import {View, ViewStyle} from 'react-native';
+import {Text} from '../';
 import {
   characterListItemStyles as styles,
   characterListItemStyles,
-} from "./CharacterListItem.styles"
-import { PeopleEdgeModelType, PersonModelType } from "../../models"
+} from './CharacterListItem.styles';
+import {PeopleEdgeModelType, PersonModelType} from '../../models';
 
 export interface CharacterListItemProps {
   /**
@@ -23,11 +23,11 @@ export interface CharacterListItemProps {
 
 export function CharacterListItem(props: CharacterListItemProps) {
   // grab the props
-  const { item } = props
+  const {item} = props;
 
   return (
     <View style={styles.PERSON_ITEM}>
       <Text> {item.name} </Text>
     </View>
-  )
+  );
 }

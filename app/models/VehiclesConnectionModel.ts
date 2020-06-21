@@ -1,11 +1,11 @@
-import { Instance } from "mobx-state-tree"
-import { VehiclesConnectionModelBase } from "./VehiclesConnectionModel.base"
+import {Instance} from 'mobx-state-tree';
+import {VehiclesConnectionModelBase} from './VehiclesConnectionModel.base';
 
 /* The TypeScript type of an instance of VehiclesConnectionModel */
 export interface VehiclesConnectionModelType extends Instance<typeof VehiclesConnectionModel.Type> {}
 
 /* A graphql query fragment builders for VehiclesConnectionModel */
-export { selectFromVehiclesConnection, vehiclesConnectionModelPrimitives, VehiclesConnectionModelSelector } from "./VehiclesConnectionModel.base"
+export {selectFromVehiclesConnection, vehiclesConnectionModelPrimitives, VehiclesConnectionModelSelector} from './VehiclesConnectionModel.base';
 
 /**
  * VehiclesConnectionModel
@@ -13,9 +13,9 @@ export { selectFromVehiclesConnection, vehiclesConnectionModelPrimitives, Vehicl
  * A connection to a list of items.
  */
 export const VehiclesConnectionModel = VehiclesConnectionModelBase
-  .actions(self => ({
+    .actions((self) => ({
     // This is an auto-generated example action.
-    log() {
-      console.log(JSON.stringify(self))
-    }
-  }))
+      log() {
+        console.log(JSON.stringify(self));
+      },
+    }));

@@ -1,11 +1,11 @@
-import { Instance } from "mobx-state-tree"
-import { FilmPlanetsConnectionModelBase } from "./FilmPlanetsConnectionModel.base"
+import {Instance} from 'mobx-state-tree';
+import {FilmPlanetsConnectionModelBase} from './FilmPlanetsConnectionModel.base';
 
 /* The TypeScript type of an instance of FilmPlanetsConnectionModel */
 export interface FilmPlanetsConnectionModelType extends Instance<typeof FilmPlanetsConnectionModel.Type> {}
 
 /* A graphql query fragment builders for FilmPlanetsConnectionModel */
-export { selectFromFilmPlanetsConnection, filmPlanetsConnectionModelPrimitives, FilmPlanetsConnectionModelSelector } from "./FilmPlanetsConnectionModel.base"
+export {selectFromFilmPlanetsConnection, filmPlanetsConnectionModelPrimitives, FilmPlanetsConnectionModelSelector} from './FilmPlanetsConnectionModel.base';
 
 /**
  * FilmPlanetsConnectionModel
@@ -13,9 +13,9 @@ export { selectFromFilmPlanetsConnection, filmPlanetsConnectionModelPrimitives, 
  * A connection to a list of items.
  */
 export const FilmPlanetsConnectionModel = FilmPlanetsConnectionModelBase
-  .actions(self => ({
+    .actions((self) => ({
     // This is an auto-generated example action.
-    log() {
-      console.log(JSON.stringify(self))
-    }
-  }))
+      log() {
+        console.log(JSON.stringify(self));
+      },
+    }));

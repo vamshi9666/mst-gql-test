@@ -1,16 +1,20 @@
 import * as React from "react"
-import { ScrollView, View, ViewStyle } from "react-native"
+import { ScrollView, View } from "react-native"
 
 export interface StoryProps {
   children?: React.ReactNode
 }
 
-const ROOT: ViewStyle = { flex: 1 }
-
-export function Story(props: StoryProps) {
+export const Story: React.FC<StoryProps> = (props: StoryProps) => {
   return (
-    <View style={ROOT}>
+    <View style={styles.ROOT}>
       <ScrollView>{props.children}</ScrollView>
     </View>
   )
+}
+
+const styles = {
+  ROOT: {
+    flex: 1,
+  },
 }

@@ -15,7 +15,7 @@
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
-    "lint": "eslint index.js app storybook test --fix --ext .js,.ts,.tsx",
+    "lint": "eslint App.js  storybook test --fix --ext .js,.ts,.tsx",
     "patch": "patch-package",
     "postinstall": "solidarity",
     "prepare": "npm-run-all patch hack:*",
@@ -59,6 +59,7 @@
     "@babel/core": "^7.8.6",
     "@babel/plugin-proposal-decorators": "^7.0.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
+    "@react-native-community/eslint-config": "^2.0.0",
     "@storybook/addon-storyshots": "5.3.17",
     "@storybook/react-native": "5.3.17",
     "@storybook/react-native-server": "5.3.17",
@@ -67,18 +68,25 @@
     "@types/react": "16.9.23",
     "@types/react-native": "0.61.23",
     "@types/react-test-renderer": "16.9.2",
-    "@typescript-eslint/eslint-plugin": "^2.24.0",
-    "@typescript-eslint/parser": "^2.24.0",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "babel-eslint": "^10.1.0",
     "babel-preset-expo": "~8.1.0",
-    "eslint": "^6.6.0",
+    "eslint": "^7.3.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-react-native": "^3.6.0",
     "eslint-plugin-standard": "^4.0.0",
+    "husky": "^4.2.5",
     "ignite-bowser": "^5.2.0",
     "jest": "25.5.4",
     "jest-expo": "^36.0.1",
@@ -175,6 +183,11 @@
       "@typescript-eslint/no-object-literal-type-assertion": 0,
       "@typescript-eslint/no-empty-interface": 0,
       "@typescript-eslint/no-var-requires": 0
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test"
     }
   }
 }

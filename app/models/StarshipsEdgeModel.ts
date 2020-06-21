@@ -1,11 +1,11 @@
-import { Instance } from "mobx-state-tree"
-import { StarshipsEdgeModelBase } from "./StarshipsEdgeModel.base"
+import {Instance} from 'mobx-state-tree';
+import {StarshipsEdgeModelBase} from './StarshipsEdgeModel.base';
 
 /* The TypeScript type of an instance of StarshipsEdgeModel */
 export interface StarshipsEdgeModelType extends Instance<typeof StarshipsEdgeModel.Type> {}
 
 /* A graphql query fragment builders for StarshipsEdgeModel */
-export { selectFromStarshipsEdge, starshipsEdgeModelPrimitives, StarshipsEdgeModelSelector } from "./StarshipsEdgeModel.base"
+export {selectFromStarshipsEdge, starshipsEdgeModelPrimitives, StarshipsEdgeModelSelector} from './StarshipsEdgeModel.base';
 
 /**
  * StarshipsEdgeModel
@@ -13,9 +13,9 @@ export { selectFromStarshipsEdge, starshipsEdgeModelPrimitives, StarshipsEdgeMod
  * An edge in a connection.
  */
 export const StarshipsEdgeModel = StarshipsEdgeModelBase
-  .actions(self => ({
+    .actions((self) => ({
     // This is an auto-generated example action.
-    log() {
-      console.log(JSON.stringify(self))
-    }
-  }))
+      log() {
+        console.log(JSON.stringify(self));
+      },
+    }));

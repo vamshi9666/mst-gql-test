@@ -1,11 +1,11 @@
-import { Instance } from "mobx-state-tree"
-import { VehiclePilotsEdgeModelBase } from "./VehiclePilotsEdgeModel.base"
+import {Instance} from 'mobx-state-tree';
+import {VehiclePilotsEdgeModelBase} from './VehiclePilotsEdgeModel.base';
 
 /* The TypeScript type of an instance of VehiclePilotsEdgeModel */
 export interface VehiclePilotsEdgeModelType extends Instance<typeof VehiclePilotsEdgeModel.Type> {}
 
 /* A graphql query fragment builders for VehiclePilotsEdgeModel */
-export { selectFromVehiclePilotsEdge, vehiclePilotsEdgeModelPrimitives, VehiclePilotsEdgeModelSelector } from "./VehiclePilotsEdgeModel.base"
+export {selectFromVehiclePilotsEdge, vehiclePilotsEdgeModelPrimitives, VehiclePilotsEdgeModelSelector} from './VehiclePilotsEdgeModel.base';
 
 /**
  * VehiclePilotsEdgeModel
@@ -13,9 +13,9 @@ export { selectFromVehiclePilotsEdge, vehiclePilotsEdgeModelPrimitives, VehicleP
  * An edge in a connection.
  */
 export const VehiclePilotsEdgeModel = VehiclePilotsEdgeModelBase
-  .actions(self => ({
+    .actions((self) => ({
     // This is an auto-generated example action.
-    log() {
-      console.log(JSON.stringify(self))
-    }
-  }))
+      log() {
+        console.log(JSON.stringify(self));
+      },
+    }));
