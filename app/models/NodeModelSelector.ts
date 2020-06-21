@@ -3,7 +3,6 @@
 /* tslint:disable */
 
 import { QueryBuilder } from "mst-gql"
-import { AssetModelSelector } from "./AssetModel.base"
 import { FilmModelSelector } from "./FilmModel.base"
 import { PersonModelSelector } from "./PersonModel.base"
 import { PlanetModelSelector } from "./PlanetModel.base"
@@ -13,11 +12,10 @@ import { VehicleModelSelector } from "./VehicleModel.base"
 
 export class NodeModelSelector extends QueryBuilder {
   get id() { return this.__attr(`id`) }
-  asset(builder?: string | AssetModelSelector | ((selector: AssetModelSelector) => AssetModelSelector)) { return this.__inlineFragment(`Asset`, AssetModelSelector, builder) }
   film(builder?: string | FilmModelSelector | ((selector: FilmModelSelector) => FilmModelSelector)) { return this.__inlineFragment(`Film`, FilmModelSelector, builder) }
-  person(builder?: string | PersonModelSelector | ((selector: PersonModelSelector) => PersonModelSelector)) { return this.__inlineFragment(`Person`, PersonModelSelector, builder) }
-  planet(builder?: string | PlanetModelSelector | ((selector: PlanetModelSelector) => PlanetModelSelector)) { return this.__inlineFragment(`Planet`, PlanetModelSelector, builder) }
   species(builder?: string | SpeciesModelSelector | ((selector: SpeciesModelSelector) => SpeciesModelSelector)) { return this.__inlineFragment(`Species`, SpeciesModelSelector, builder) }
+  planet(builder?: string | PlanetModelSelector | ((selector: PlanetModelSelector) => PlanetModelSelector)) { return this.__inlineFragment(`Planet`, PlanetModelSelector, builder) }
+  person(builder?: string | PersonModelSelector | ((selector: PersonModelSelector) => PersonModelSelector)) { return this.__inlineFragment(`Person`, PersonModelSelector, builder) }
   starship(builder?: string | StarshipModelSelector | ((selector: StarshipModelSelector) => StarshipModelSelector)) { return this.__inlineFragment(`Starship`, StarshipModelSelector, builder) }
   vehicle(builder?: string | VehicleModelSelector | ((selector: VehicleModelSelector) => VehicleModelSelector)) { return this.__inlineFragment(`Vehicle`, VehicleModelSelector, builder) }
 }

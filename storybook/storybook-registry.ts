@@ -1,3 +1,5 @@
+require("../app/components/CharacterListItem/CharacterListItem.story")
+require("../app/components/FetchError/FetchError.story")
 require("../app/components/text/text.story")
 require("../app/components/button/button.story")
 require("../app/components/form-row/form-row.story")

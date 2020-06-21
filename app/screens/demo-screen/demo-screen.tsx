@@ -80,7 +80,7 @@ export const DemoScreen: Component = observer(function DemoScreen() {
   const goBack = () => navigation.goBack()
 
   const demoReactotron = useCallback(() => {
-    console.tron.log(" Reactatron is connected")
+    navigation.navigate("allCharacters")
   }, [])
   return (
     <View style={FULL}>

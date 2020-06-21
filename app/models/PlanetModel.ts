@@ -9,6 +9,8 @@ export { selectFromPlanet, planetModelPrimitives, PlanetModelSelector } from "./
 
 /**
  * PlanetModel
+ *
+ * A large mass, planet or planetoid in the Star Wars Universe, at the time of 0 ABY.
  */
 export const PlanetModel = PlanetModelBase
   .actions(self => ({

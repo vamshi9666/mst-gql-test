@@ -9,6 +9,8 @@ export { selectFromVehicle, vehicleModelPrimitives, VehicleModelSelector } from 
 
 /**
  * VehicleModel
+ *
+ * A single transport craft that does not have hyperdrive capability
  */
 export const VehicleModel = VehicleModelBase
   .actions(self => ({

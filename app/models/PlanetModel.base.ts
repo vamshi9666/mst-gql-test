@@ -2,78 +2,77 @@
 /* eslint-disable */
 /* tslint:disable */
 
-import { IObservableArray } from "mobx"
 import { types } from "mobx-state-tree"
-import { MSTGQLRef, QueryBuilder, withTypedRefs } from "mst-gql"
+import { QueryBuilder } from "mst-gql"
 import { ModelBase } from "./ModelBase"
-import { FilmModel, FilmModelType } from "./FilmModel"
-import { FilmModelSelector } from "./FilmModel.base"
-import { PersonModel, PersonModelType } from "./PersonModel"
-import { PersonModelSelector } from "./PersonModel.base"
-import { QueryMetaModel, QueryMetaModelType } from "./QueryMetaModel"
-import { QueryMetaModelSelector } from "./QueryMetaModel.base"
+import { PlanetFilmsConnectionModel, PlanetFilmsConnectionModelType } from "./PlanetFilmsConnectionModel"
+import { PlanetFilmsConnectionModelSelector } from "./PlanetFilmsConnectionModel.base"
+import { PlanetResidentsConnectionModel, PlanetResidentsConnectionModelType } from "./PlanetResidentsConnectionModel"
+import { PlanetResidentsConnectionModelSelector } from "./PlanetResidentsConnectionModel.base"
 import { RootStoreType } from "./index"
 
-
-/* The TypeScript type that explicits the refs to other models in order to prevent a circular refs issue */
-type Refs = {
-  films: IObservableArray<FilmModelType>;
-  residents: IObservableArray<PersonModelType>;
-}
 
 /**
  * PlanetBase
  * auto generated base class for the model PlanetModel.
+ *
+ * A large mass, planet or planetoid in the Star Wars Universe, at the time of 0 ABY.
  */
-export const PlanetModelBase = withTypedRefs<Refs>()(ModelBase
+export const PlanetModelBase = ModelBase
   .named('Planet')
   .props({
     __typename: types.optional(types.literal("Planet"), "Planet"),
-    climate: types.union(types.undefined, types.null, types.array(types.string)),
-    createdAt: types.union(types.undefined, types.frozen()),
+    /** The name of this planet. */
+    name: types.union(types.undefined, types.null, types.string),
+    /** The diameter of this planet in kilometers. */
     diameter: types.union(types.undefined, types.null, types.integer),
-    films: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => FilmModel)))),
-    gravity: types.union(types.undefined, types.null, types.string),
-    id: types.identifier,
-    isPublished: types.union(types.undefined, types.boolean),
-    name: types.union(types.undefined, types.string),
-    orbitalPeriod: types.union(types.undefined, types.null, types.integer),
-    population: types.union(types.undefined, types.null, types.number),
-    residents: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => PersonModel)))),
+    /** The number of standard hours it takes for this planet to complete a single rotation on its axis. */
     rotationPeriod: types.union(types.undefined, types.null, types.integer),
+    /** The number of standard days it takes for this planet to complete a single orbit of its local star. */
+    orbitalPeriod: types.union(types.undefined, types.null, types.integer),
+    /** A number denoting the gravity of this planet, where "1" is normal or 1 standard G. "2" is twice or 2 standard Gs. "0.5" is half or 0.5 standard Gs. */
+    gravity: types.union(types.undefined, types.null, types.string),
+    /** The average population of sentient beings inhabiting this planet. */
+    population: types.union(types.undefined, types.null, types.number),
+    /** The climates of this planet. */
+    climates: types.union(types.undefined, types.null, types.array(types.union(types.null, types.string))),
+    /** The terrains of this planet. */
+    terrains: types.union(types.undefined, types.null, types.array(types.union(types.null, types.string))),
+    /** The percentage of the planet surface that is naturally occuring water or bodies of water. */
     surfaceWater: types.union(types.undefined, types.null, types.number),
-    terrain: types.union(types.undefined, types.null, types.array(types.string)),
-    updatedAt: types.union(types.undefined, types.frozen()),
-    _filmsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _residentsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
+    residentConnection: types.union(types.undefined, types.null, types.late((): any => PlanetResidentsConnectionModel)),
+    filmConnection: types.union(types.undefined, types.null, types.late((): any => PlanetFilmsConnectionModel)),
+    /** The ISO 8601 date format of the time that this resource was created. */
+    created: types.union(types.undefined, types.null, types.string),
+    /** The ISO 8601 date format of the time that this resource was edited. */
+    edited: types.union(types.undefined, types.null, types.string),
+    /** The ID of an object */
+    id: types.identifier,
   })
   .views(self => ({
     get store() {
       return self.__getStore<RootStoreType>()
     }
-  })))
+  }))
 
 export class PlanetModelSelector extends QueryBuilder {
-  get climate() { return this.__attr(`climate`) }
-  get createdAt() { return this.__attr(`createdAt`) }
-  get diameter() { return this.__attr(`diameter`) }
-  get gravity() { return this.__attr(`gravity`) }
-  get id() { return this.__attr(`id`) }
-  get isPublished() { return this.__attr(`isPublished`) }
   get name() { return this.__attr(`name`) }
-  get orbitalPeriod() { return this.__attr(`orbitalPeriod`) }
-  get population() { return this.__attr(`population`) }
+  get diameter() { return this.__attr(`diameter`) }
   get rotationPeriod() { return this.__attr(`rotationPeriod`) }
+  get orbitalPeriod() { return this.__attr(`orbitalPeriod`) }
+  get gravity() { return this.__attr(`gravity`) }
+  get population() { return this.__attr(`population`) }
+  get climates() { return this.__attr(`climates`) }
+  get terrains() { return this.__attr(`terrains`) }
   get surfaceWater() { return this.__attr(`surfaceWater`) }
-  get terrain() { return this.__attr(`terrain`) }
-  get updatedAt() { return this.__attr(`updatedAt`) }
-  films(builder?: string | FilmModelSelector | ((selector: FilmModelSelector) => FilmModelSelector)) { return this.__child(`films`, FilmModelSelector, builder) }
-  residents(builder?: string | PersonModelSelector | ((selector: PersonModelSelector) => PersonModelSelector)) { return this.__child(`residents`, PersonModelSelector, builder) }
-  _filmsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_filmsMeta`, QueryMetaModelSelector, builder) }
-  _residentsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_residentsMeta`, QueryMetaModelSelector, builder) }
+  get created() { return this.__attr(`created`) }
+  get edited() { return this.__attr(`edited`) }
+  get id() { return this.__attr(`id`) }
+  residentConnection(builder?: string | PlanetResidentsConnectionModelSelector | ((selector: PlanetResidentsConnectionModelSelector) => PlanetResidentsConnectionModelSelector)) { return this.__child(`residentConnection`, PlanetResidentsConnectionModelSelector, builder) }
+  filmConnection(builder?: string | PlanetFilmsConnectionModelSelector | ((selector: PlanetFilmsConnectionModelSelector) => PlanetFilmsConnectionModelSelector)) { return this.__child(`filmConnection`, PlanetFilmsConnectionModelSelector, builder) }
 }
 export function selectFromPlanet() {
   return new PlanetModelSelector()
 }
 
-export const planetModelPrimitives = selectFromPlanet().climate.createdAt.diameter.gravity.isPublished.name.orbitalPeriod.population.rotationPeriod.surfaceWater.terrain.updatedAt
+export const planetModelPrimitives = selectFromPlanet().name.diameter.rotationPeriod.orbitalPeriod.gravity.population.climates.terrains.surfaceWater.created.edited

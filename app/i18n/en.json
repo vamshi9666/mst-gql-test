@@ -12,6 +12,9 @@
     "readyForLaunch": "Ready for launch.",
     "continue": "CONTINUE"
   },
+  "allCharactersScreen": {
+    "header": "AllCharacters "
+  },
   "demoScreen": {
     "howTo": "HOW TO",
     "title": "What’s In This Stack?",

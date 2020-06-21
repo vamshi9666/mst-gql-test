@@ -2,82 +2,83 @@
 /* eslint-disable */
 /* tslint:disable */
 
-import { IObservableArray } from "mobx"
 import { types } from "mobx-state-tree"
-import { MSTGQLRef, QueryBuilder, withTypedRefs } from "mst-gql"
+import { QueryBuilder } from "mst-gql"
 import { ModelBase } from "./ModelBase"
-import { FilmModel, FilmModelType } from "./FilmModel"
-import { FilmModelSelector } from "./FilmModel.base"
-import { PersonModel, PersonModelType } from "./PersonModel"
-import { PersonModelSelector } from "./PersonModel.base"
-import { QueryMetaModel, QueryMetaModelType } from "./QueryMetaModel"
-import { QueryMetaModelSelector } from "./QueryMetaModel.base"
+import { VehicleFilmsConnectionModel, VehicleFilmsConnectionModelType } from "./VehicleFilmsConnectionModel"
+import { VehicleFilmsConnectionModelSelector } from "./VehicleFilmsConnectionModel.base"
+import { VehiclePilotsConnectionModel, VehiclePilotsConnectionModelType } from "./VehiclePilotsConnectionModel"
+import { VehiclePilotsConnectionModelSelector } from "./VehiclePilotsConnectionModel.base"
 import { RootStoreType } from "./index"
 
-
-/* The TypeScript type that explicits the refs to other models in order to prevent a circular refs issue */
-type Refs = {
-  films: IObservableArray<FilmModelType>;
-  pilots: IObservableArray<PersonModelType>;
-}
 
 /**
  * VehicleBase
  * auto generated base class for the model VehicleModel.
+ *
+ * A single transport craft that does not have hyperdrive capability
  */
-export const VehicleModelBase = withTypedRefs<Refs>()(ModelBase
+export const VehicleModelBase = ModelBase
   .named('Vehicle')
   .props({
     __typename: types.optional(types.literal("Vehicle"), "Vehicle"),
-    cargoCapacity: types.union(types.undefined, types.null, types.integer),
-    class: types.union(types.undefined, types.null, types.string),
-    consumables: types.union(types.undefined, types.null, types.string),
-    costInCredits: types.union(types.undefined, types.null, types.integer),
-    createdAt: types.union(types.undefined, types.frozen()),
-    crew: types.union(types.undefined, types.null, types.integer),
-    films: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => FilmModel)))),
-    id: types.identifier,
-    isPublished: types.union(types.undefined, types.boolean),
-    length: types.union(types.undefined, types.null, types.number),
-    manufacturer: types.union(types.undefined, types.null, types.array(types.string)),
-    maxAtmospheringSpeed: types.union(types.undefined, types.null, types.integer),
+    /** The name of this vehicle. The common name, such as "Sand Crawler" or "Speeder bike". */
+    name: types.union(types.undefined, types.null, types.string),
+    /** The model or official name of this vehicle. Such as "All-Terrain Attack Transport". */
     model: types.union(types.undefined, types.null, types.string),
-    name: types.union(types.undefined, types.string),
-    passengers: types.union(types.undefined, types.null, types.integer),
-    pilots: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => PersonModel)))),
-    updatedAt: types.union(types.undefined, types.frozen()),
-    _filmsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _pilotsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
+    /** The class of this vehicle, such as "Wheeled" or "Repulsorcraft". */
+    vehicleClass: types.union(types.undefined, types.null, types.string),
+    /** The manufacturers of this vehicle. */
+    manufacturers: types.union(types.undefined, types.null, types.array(types.union(types.null, types.string))),
+    /** The cost of this vehicle new, in Galactic Credits. */
+    costInCredits: types.union(types.undefined, types.null, types.number),
+    /** The length of this vehicle in meters. */
+    length: types.union(types.undefined, types.null, types.number),
+    /** The number of personnel needed to run or pilot this vehicle. */
+    crew: types.union(types.undefined, types.null, types.string),
+    /** The number of non-essential people this vehicle can transport. */
+    passengers: types.union(types.undefined, types.null, types.string),
+    /** The maximum speed of this vehicle in atmosphere. */
+    maxAtmospheringSpeed: types.union(types.undefined, types.null, types.integer),
+    /** The maximum number of kilograms that this vehicle can transport. */
+    cargoCapacity: types.union(types.undefined, types.null, types.number),
+    /** The maximum length of time that this vehicle can provide consumables for its entire crew without having to resupply. */
+    consumables: types.union(types.undefined, types.null, types.string),
+    pilotConnection: types.union(types.undefined, types.null, types.late((): any => VehiclePilotsConnectionModel)),
+    filmConnection: types.union(types.undefined, types.null, types.late((): any => VehicleFilmsConnectionModel)),
+    /** The ISO 8601 date format of the time that this resource was created. */
+    created: types.union(types.undefined, types.null, types.string),
+    /** The ISO 8601 date format of the time that this resource was edited. */
+    edited: types.union(types.undefined, types.null, types.string),
+    /** The ID of an object */
+    id: types.identifier,
   })
   .views(self => ({
     get store() {
       return self.__getStore<RootStoreType>()
     }
-  })))
+  }))
 
 export class VehicleModelSelector extends QueryBuilder {
-  get cargoCapacity() { return this.__attr(`cargoCapacity`) }
-  get class() { return this.__attr(`class`) }
-  get consumables() { return this.__attr(`consumables`) }
-  get costInCredits() { return this.__attr(`costInCredits`) }
-  get createdAt() { return this.__attr(`createdAt`) }
-  get crew() { return this.__attr(`crew`) }
-  get id() { return this.__attr(`id`) }
-  get isPublished() { return this.__attr(`isPublished`) }
-  get length() { return this.__attr(`length`) }
-  get manufacturer() { return this.__attr(`manufacturer`) }
-  get maxAtmospheringSpeed() { return this.__attr(`maxAtmospheringSpeed`) }
-  get model() { return this.__attr(`model`) }
   get name() { return this.__attr(`name`) }
+  get model() { return this.__attr(`model`) }
+  get vehicleClass() { return this.__attr(`vehicleClass`) }
+  get manufacturers() { return this.__attr(`manufacturers`) }
+  get costInCredits() { return this.__attr(`costInCredits`) }
+  get length() { return this.__attr(`length`) }
+  get crew() { return this.__attr(`crew`) }
   get passengers() { return this.__attr(`passengers`) }
-  get updatedAt() { return this.__attr(`updatedAt`) }
-  films(builder?: string | FilmModelSelector | ((selector: FilmModelSelector) => FilmModelSelector)) { return this.__child(`films`, FilmModelSelector, builder) }
-  pilots(builder?: string | PersonModelSelector | ((selector: PersonModelSelector) => PersonModelSelector)) { return this.__child(`pilots`, PersonModelSelector, builder) }
-  _filmsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_filmsMeta`, QueryMetaModelSelector, builder) }
-  _pilotsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_pilotsMeta`, QueryMetaModelSelector, builder) }
+  get maxAtmospheringSpeed() { return this.__attr(`maxAtmospheringSpeed`) }
+  get cargoCapacity() { return this.__attr(`cargoCapacity`) }
+  get consumables() { return this.__attr(`consumables`) }
+  get created() { return this.__attr(`created`) }
+  get edited() { return this.__attr(`edited`) }
+  get id() { return this.__attr(`id`) }
+  pilotConnection(builder?: string | VehiclePilotsConnectionModelSelector | ((selector: VehiclePilotsConnectionModelSelector) => VehiclePilotsConnectionModelSelector)) { return this.__child(`pilotConnection`, VehiclePilotsConnectionModelSelector, builder) }
+  filmConnection(builder?: string | VehicleFilmsConnectionModelSelector | ((selector: VehicleFilmsConnectionModelSelector) => VehicleFilmsConnectionModelSelector)) { return this.__child(`filmConnection`, VehicleFilmsConnectionModelSelector, builder) }
 }
 export function selectFromVehicle() {
   return new VehicleModelSelector()
 }
 
-export const vehicleModelPrimitives = selectFromVehicle().cargoCapacity.class.consumables.costInCredits.createdAt.crew.isPublished.length.manufacturer.maxAtmospheringSpeed.model.name.passengers.updatedAt
+export const vehicleModelPrimitives = selectFromVehicle().name.model.vehicleClass.manufacturers.costInCredits.length.crew.passengers.maxAtmospheringSpeed.cargoCapacity.consumables.created.edited

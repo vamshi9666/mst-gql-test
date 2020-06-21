@@ -9,6 +9,8 @@ export { selectFromStarship, starshipModelPrimitives, StarshipModelSelector } fr
 
 /**
  * StarshipModel
+ *
+ * A single transport craft that has hyperdrive capability.
  */
 export const StarshipModel = StarshipModelBase
   .actions(self => ({

@@ -9,6 +9,8 @@ export { selectFromPerson, personModelPrimitives, PersonModelSelector } from "./
 
 /**
  * PersonModel
+ *
+ * An individual person or character within the Star Wars universe.
  */
 export const PersonModel = PersonModelBase
   .actions(self => ({

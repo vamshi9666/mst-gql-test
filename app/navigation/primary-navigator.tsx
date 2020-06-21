@@ -8,6 +8,7 @@ import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import { WelcomeScreen, DemoScreen } from "../screens"
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
+import { AllCharactersScreen } from "../screens/AllCharacters-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -24,6 +25,7 @@ import { createNativeStackNavigator } from "react-native-screens/native-stack"
 export type PrimaryParamList = {
   welcome: undefined
   demo: undefined
+  allCharacters: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -39,6 +41,7 @@ export function PrimaryNavigator() {
     >
       <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
+      <Stack.Screen name="allCharacters" component={AllCharactersScreen} />
     </Stack.Navigator>
   )
 }

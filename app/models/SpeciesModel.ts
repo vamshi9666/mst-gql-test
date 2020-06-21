@@ -9,6 +9,8 @@ export { selectFromSpecies, speciesModelPrimitives, SpeciesModelSelector } from 
 
 /**
  * SpeciesModel
+ *
+ * A type of person or character within the Star Wars Universe.
  */
 export const SpeciesModel = SpeciesModelBase
   .actions(self => ({

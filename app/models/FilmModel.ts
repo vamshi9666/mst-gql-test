@@ -9,6 +9,8 @@ export { selectFromFilm, filmModelPrimitives, FilmModelSelector } from "./FilmMo
 
 /**
  * FilmModel
+ *
+ * A single film.
  */
 export const FilmModel = FilmModelBase
   .actions(self => ({

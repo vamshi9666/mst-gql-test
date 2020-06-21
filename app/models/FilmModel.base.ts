@@ -2,93 +2,80 @@
 /* eslint-disable */
 /* tslint:disable */
 
-import { IObservableArray } from "mobx"
 import { types } from "mobx-state-tree"
-import { MSTGQLRef, QueryBuilder, withTypedRefs } from "mst-gql"
+import { QueryBuilder } from "mst-gql"
 import { ModelBase } from "./ModelBase"
-import { PersonModel, PersonModelType } from "./PersonModel"
-import { PersonModelSelector } from "./PersonModel.base"
-import { PlanetModel, PlanetModelType } from "./PlanetModel"
-import { PlanetModelSelector } from "./PlanetModel.base"
-import { QueryMetaModel, QueryMetaModelType } from "./QueryMetaModel"
-import { QueryMetaModelSelector } from "./QueryMetaModel.base"
-import { SpeciesModel, SpeciesModelType } from "./SpeciesModel"
-import { SpeciesModelSelector } from "./SpeciesModel.base"
-import { StarshipModel, StarshipModelType } from "./StarshipModel"
-import { StarshipModelSelector } from "./StarshipModel.base"
-import { VehicleModel, VehicleModelType } from "./VehicleModel"
-import { VehicleModelSelector } from "./VehicleModel.base"
+import { FilmCharactersConnectionModel, FilmCharactersConnectionModelType } from "./FilmCharactersConnectionModel"
+import { FilmCharactersConnectionModelSelector } from "./FilmCharactersConnectionModel.base"
+import { FilmPlanetsConnectionModel, FilmPlanetsConnectionModelType } from "./FilmPlanetsConnectionModel"
+import { FilmPlanetsConnectionModelSelector } from "./FilmPlanetsConnectionModel.base"
+import { FilmSpeciesConnectionModel, FilmSpeciesConnectionModelType } from "./FilmSpeciesConnectionModel"
+import { FilmSpeciesConnectionModelSelector } from "./FilmSpeciesConnectionModel.base"
+import { FilmStarshipsConnectionModel, FilmStarshipsConnectionModelType } from "./FilmStarshipsConnectionModel"
+import { FilmStarshipsConnectionModelSelector } from "./FilmStarshipsConnectionModel.base"
+import { FilmVehiclesConnectionModel, FilmVehiclesConnectionModelType } from "./FilmVehiclesConnectionModel"
+import { FilmVehiclesConnectionModelSelector } from "./FilmVehiclesConnectionModel.base"
 import { RootStoreType } from "./index"
 
-
-/* The TypeScript type that explicits the refs to other models in order to prevent a circular refs issue */
-type Refs = {
-  characters: IObservableArray<PersonModelType>;
-  planets: IObservableArray<PlanetModelType>;
-  species: IObservableArray<SpeciesModelType>;
-  starships: IObservableArray<StarshipModelType>;
-  vehicles: IObservableArray<VehicleModelType>;
-}
 
 /**
  * FilmBase
  * auto generated base class for the model FilmModel.
+ *
+ * A single film.
  */
-export const FilmModelBase = withTypedRefs<Refs>()(ModelBase
+export const FilmModelBase = ModelBase
   .named('Film')
   .props({
     __typename: types.optional(types.literal("Film"), "Film"),
-    characters: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => PersonModel)))),
-    createdAt: types.union(types.undefined, types.frozen()),
-    director: types.union(types.undefined, types.null, types.string),
-    episodeId: types.union(types.undefined, types.integer),
-    id: types.identifier,
-    isPublished: types.union(types.undefined, types.boolean),
+    /** The title of this film. */
+    title: types.union(types.undefined, types.null, types.string),
+    /** The episode number of this film. */
+    episodeID: types.union(types.undefined, types.null, types.integer),
+    /** The opening paragraphs at the beginning of this film. */
     openingCrawl: types.union(types.undefined, types.null, types.string),
-    planets: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => PlanetModel)))),
-    producers: types.union(types.undefined, types.null, types.array(types.string)),
-    releaseDate: types.union(types.undefined, types.null, types.frozen()),
-    species: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => SpeciesModel)))),
-    starships: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => StarshipModel)))),
-    title: types.union(types.undefined, types.string),
-    updatedAt: types.union(types.undefined, types.frozen()),
-    vehicles: types.union(types.undefined, types.null, types.array(MSTGQLRef(types.late((): any => VehicleModel)))),
-    _charactersMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _planetsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _speciesMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _starshipsMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
-    _vehiclesMeta: types.union(types.undefined, types.late((): any => QueryMetaModel)),
+    /** The name of the director of this film. */
+    director: types.union(types.undefined, types.null, types.string),
+    /** The name(s) of the producer(s) of this film. */
+    producers: types.union(types.undefined, types.null, types.array(types.union(types.null, types.string))),
+    /** The ISO 8601 date format of film release at original creator country. */
+    releaseDate: types.union(types.undefined, types.null, types.string),
+    speciesConnection: types.union(types.undefined, types.null, types.late((): any => FilmSpeciesConnectionModel)),
+    starshipConnection: types.union(types.undefined, types.null, types.late((): any => FilmStarshipsConnectionModel)),
+    vehicleConnection: types.union(types.undefined, types.null, types.late((): any => FilmVehiclesConnectionModel)),
+    characterConnection: types.union(types.undefined, types.null, types.late((): any => FilmCharactersConnectionModel)),
+    planetConnection: types.union(types.undefined, types.null, types.late((): any => FilmPlanetsConnectionModel)),
+    /** The ISO 8601 date format of the time that this resource was created. */
+    created: types.union(types.undefined, types.null, types.string),
+    /** The ISO 8601 date format of the time that this resource was edited. */
+    edited: types.union(types.undefined, types.null, types.string),
+    /** The ID of an object */
+    id: types.identifier,
   })
   .views(self => ({
     get store() {
       return self.__getStore<RootStoreType>()
     }
-  })))
+  }))
 
 export class FilmModelSelector extends QueryBuilder {
-  get createdAt() { return this.__attr(`createdAt`) }
-  get director() { return this.__attr(`director`) }
-  get episodeId() { return this.__attr(`episodeId`) }
-  get id() { return this.__attr(`id`) }
-  get isPublished() { return this.__attr(`isPublished`) }
+  get title() { return this.__attr(`title`) }
+  get episodeID() { return this.__attr(`episodeID`) }
   get openingCrawl() { return this.__attr(`openingCrawl`) }
+  get director() { return this.__attr(`director`) }
   get producers() { return this.__attr(`producers`) }
   get releaseDate() { return this.__attr(`releaseDate`) }
-  get title() { return this.__attr(`title`) }
-  get updatedAt() { return this.__attr(`updatedAt`) }
-  characters(builder?: string | PersonModelSelector | ((selector: PersonModelSelector) => PersonModelSelector)) { return this.__child(`characters`, PersonModelSelector, builder) }
-  planets(builder?: string | PlanetModelSelector | ((selector: PlanetModelSelector) => PlanetModelSelector)) { return this.__child(`planets`, PlanetModelSelector, builder) }
-  species(builder?: string | SpeciesModelSelector | ((selector: SpeciesModelSelector) => SpeciesModelSelector)) { return this.__child(`species`, SpeciesModelSelector, builder) }
-  starships(builder?: string | StarshipModelSelector | ((selector: StarshipModelSelector) => StarshipModelSelector)) { return this.__child(`starships`, StarshipModelSelector, builder) }
-  vehicles(builder?: string | VehicleModelSelector | ((selector: VehicleModelSelector) => VehicleModelSelector)) { return this.__child(`vehicles`, VehicleModelSelector, builder) }
-  _charactersMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_charactersMeta`, QueryMetaModelSelector, builder) }
-  _planetsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_planetsMeta`, QueryMetaModelSelector, builder) }
-  _speciesMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_speciesMeta`, QueryMetaModelSelector, builder) }
-  _starshipsMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_starshipsMeta`, QueryMetaModelSelector, builder) }
-  _vehiclesMeta(builder?: string | QueryMetaModelSelector | ((selector: QueryMetaModelSelector) => QueryMetaModelSelector)) { return this.__child(`_vehiclesMeta`, QueryMetaModelSelector, builder) }
+  get created() { return this.__attr(`created`) }
+  get edited() { return this.__attr(`edited`) }
+  get id() { return this.__attr(`id`) }
+  speciesConnection(builder?: string | FilmSpeciesConnectionModelSelector | ((selector: FilmSpeciesConnectionModelSelector) => FilmSpeciesConnectionModelSelector)) { return this.__child(`speciesConnection`, FilmSpeciesConnectionModelSelector, builder) }
+  starshipConnection(builder?: string | FilmStarshipsConnectionModelSelector | ((selector: FilmStarshipsConnectionModelSelector) => FilmStarshipsConnectionModelSelector)) { return this.__child(`starshipConnection`, FilmStarshipsConnectionModelSelector, builder) }
+  vehicleConnection(builder?: string | FilmVehiclesConnectionModelSelector | ((selector: FilmVehiclesConnectionModelSelector) => FilmVehiclesConnectionModelSelector)) { return this.__child(`vehicleConnection`, FilmVehiclesConnectionModelSelector, builder) }
+  characterConnection(builder?: string | FilmCharactersConnectionModelSelector | ((selector: FilmCharactersConnectionModelSelector) => FilmCharactersConnectionModelSelector)) { return this.__child(`characterConnection`, FilmCharactersConnectionModelSelector, builder) }
+  planetConnection(builder?: string | FilmPlanetsConnectionModelSelector | ((selector: FilmPlanetsConnectionModelSelector) => FilmPlanetsConnectionModelSelector)) { return this.__child(`planetConnection`, FilmPlanetsConnectionModelSelector, builder) }
 }
 export function selectFromFilm() {
   return new FilmModelSelector()
 }
 
-export const filmModelPrimitives = selectFromFilm().createdAt.director.episodeId.isPublished.openingCrawl.producers.releaseDate.title.updatedAt
+export const filmModelPrimitives = selectFromFilm().title.episodeID.openingCrawl.director.producers.releaseDate.created.edited
